@@ -1,0 +1,51 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+
+    <preference for="Beecom\MatrixRate\Api\Data\MatrixrateInterface" type="Beecom\MatrixRate\Model\Matrixrate" />
+    <preference for="Beecom\MatrixRate\Api\MatrixrateRepositoryInterface" type="Beecom\MatrixRate\Model\MatrixrateRepository" />
+    <preference for="Beecom\MatrixRate\Api\Data\MatrixrateSearchResultsInterface" type="Beecom\MatrixRate\Model\MatrixrateRepository" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="beecom_matrixrate_grid_listing_data_source" xsi:type="string">Beecom\MatrixRate\Model\ResourceModel\Carrier\Matrixrate\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Beecom\MatrixRate\Model\ResourceModel\Carrier\Matrixrate\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">beecom_matrixrate</argument>
+            <argument name="resourceModel" xsi:type="string">Beecom\MatrixRate\Model\ResourceModel\Carrier\Matrixrate</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Beecom\MatrixRate\Model\Api\SearchCriteria\MatrixrateCollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">Beecom\MatrixRate\Model\Api\SearchCriteria\CollectionProcessor\MatrixrateFilterProcessor</item>
+                <item name="sorting" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor</item>
+                <item name="pagination" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Beecom\MatrixRate\Model\Api\SearchCriteria\CollectionProcessor\MatrixrateFilterProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor">
+        <arguments>
+            <argument name="customFilters" xsi:type="array">
+                <item name="store_id" xsi:type="object">Beecom\MatrixRate\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor\MatrixrateStoreFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Beecom\MatrixRate\Api\Data\MatrixrateInterface" xsi:type="string">Beecom\MatrixRate\Api\MatrixrateRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Beecom\Core\Block\Adminhtml\Form\Field\ShippingMethods">
+        <plugin name="BeecomMatrixrateAfterGetAllShippingMethods" type="\Beecom\MatrixRate\Plugin\AfterGetDeliveryMethodsPlugin" sortOrder="100" disabled="false" />
+    </type>
+    <type name="Magento\Quote\Model\Cart\ShippingMethodConverter">
+        <plugin name="add_additional_component_to_carrier" type="Beecom\MatrixRate\Plugin\Carrier\AdditionalComponent" disabled="false" sortOrder="30"/>
+    </type>
+</config>

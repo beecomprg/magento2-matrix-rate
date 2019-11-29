@@ -1,0 +1,156 @@
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                beecom_matrixrate_grid_listing.beecom_matrixrate_grid_listing_data_source
+            </item>
+            <item name="deps" xsi:type="string">
+                beecom_matrixrate_grid_listing.beecom_matrixrate_grid_listing_data_source
+            </item>
+        </item>
+        <item name="spinner" xsi:type="string">beecom_matrixrate_page_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Rate</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/new</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="beecom_matrixrate_grid_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">
+                Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider
+            </argument>
+            <argument name="name" xsi:type="string">beecom_matrixrate_grid_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">rate_id</argument>
+            <argument name="requestFieldName" xsi:type="string">rate_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">rate_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <columns name="beecom_matrixrate_page_columns">
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">55</item>
+                    <item name="indexField" xsi:type="string">rate_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="rate_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="is_active">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Active?</item>
+                </item>
+            </argument>
+        </column>
+        <column name="shipping_method">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Shipping method</item>
+                </item>
+            </argument>
+        </column>
+        <column name="dest_country_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Dest Country ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="dest_region_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Dest Region ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="dest_city">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Dest City</item>
+                </item>
+            </argument>
+        </column>
+        <column name="dest_zip">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Dest Zip</item>
+                </item>
+            </argument>
+        </column>
+        <column name="dest_zip_to">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Dest Zip To</item>
+                </item>
+            </argument>
+        </column>
+        <column name="price">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Price</item>
+                </item>
+            </argument>
+        </column>
+        <column name="condition_from_value">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Condition From Value</item>
+                </item>
+            </argument>
+        </column>
+        <column name="condition_to_value">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Condition To Value</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="Beecom\MatrixRate\Ui\Component\Listing\Column\MatrixrateActions">
+            <settings>
+                <indexField>rate_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

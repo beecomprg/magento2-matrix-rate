@@ -1,0 +1,27 @@
+{
+    "name": "beecom/module-matrixrate",
+    "description": "Magento Shipping Multiple Table Rates - MatrixRate",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "Beecom",
+            "email": "info@beecom.io",
+            "homepage": "http://www.beecom.io"
+        }
+    ],
+    "type": "magento2-module",
+    "support": {
+        "documentation": "https://beecomers.atlassian.net/wiki/spaces/BEEW/pages/626589699/Beecom+Matrix+Rate"
+    },
+    "autoload": {
+        "files": [
+            "src/registration.php"
+        ],
+        "psr-4": {
+            "Beecom\\MatrixRate\\": "src/"
+        }
+    }
+}

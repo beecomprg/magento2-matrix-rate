@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd"><menu>
+        <add id="Beecom_MatrixRate::matrixrate" title="Carriers"
+             module="Beecom_MatrixRate" sortOrder="10"
+             resource="Beecom_MatrixRate::matrixrate" parent="Beecom_Core::all"/>
+        <add id="Beecom_MatrixRate::matrixrates" title="Matrix Rates" module="Beecom_MatrixRate"
+             sortOrder="10" action="beecom_matrixrate/grid/index"
+             resource="Beecom_MatrixRate::matrixrates" parent="Beecom_MatrixRate::matrixrate"/>
+
+</menu>
+</config>

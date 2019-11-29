@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <matrixrate>
+                <active>0</active>
+                <debug>1</debug>
+                <sallowspecific>0</sallowspecific>
+                <condition_name>package_value</condition_name>
+                <include_virtual_price>1</include_virtual_price>
+                <model>Beecom\MatrixRate\Model\Carrier\Matrixrate</model>
+                <name>Matrix Rate</name>
+                <title>Beecom Matrix rate</title>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+                <handling_type>F</handling_type>
+                <is_online>1</is_online>
+            </matrixrate>
+        </carriers>
+    </default>
+</config>

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                beecom_matrixrate_edit_form.beecom_matrixrate_matrixrate_form_data_source
+            </item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Matrix Rate Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="save_and_continue" class="Beecom\MatrixRate\Block\Adminhtml\Grid\Edit\SaveAndContinueButton"/>
+            <button name="save" class="Beecom\MatrixRate\Block\Adminhtml\Grid\Edit\SaveButton"/>
+            <button name="reset" class="Beecom\MatrixRate\Block\Adminhtml\Grid\Edit\ResetButton"/>
+            <button name="delete" class="Beecom\MatrixRate\Block\Adminhtml\Grid\Edit\DeleteButton"/>
+            <button name="back" class="Beecom\MatrixRate\Block\Adminhtml\Grid\Edit\BackButton"/>
+        </buttons>
+        <namespace>beecom_matrixrate_matrixrate_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>beecom_matrixrate_edit_form.beecom_matrixrate_matrixrate_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="beecom_matrixrate_matrixrate_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="beecom_matrixrate/grid/save"/>
+        </settings>
+        <dataProvider class="Beecom\MatrixRate\Model\Matrixrate\DataProvider"
+                      name="beecom_matrixrate_matrixrate_form_data_source">
+            <settings>
+                <requestFieldName>rate_id</requestFieldName>
+                <primaryFieldName>rate_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <settings>
+            <label>General</label>
+        </settings>
+        <field name="rate_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>rate_id</dataScope>
+            </settings>
+        </field>
+
+        <field name="is_active" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enabled</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <!--<field name="storeviews" formElement="multiselect">-->
+        <!--<argument name="data" xsi:type="array">-->
+        <!--<item name="config" xsi:type="array">-->
+        <!--<item name="source" xsi:type="string">matrixrate</item>-->
+        <!--<item name="default" xsi:type="number">0</item>-->
+        <!--</item>-->
+        <!--</argument>-->
+        <!--<settings>-->
+        <!--<validation>-->
+        <!--<rule name="required-entry" xsi:type="boolean">true</rule>-->
+        <!--</validation>-->
+        <!--<dataType>int</dataType>-->
+        <!--<label translate="true">Store View</label>-->
+        <!--<dataScope>store_id</dataScope>-->
+        <!--</settings>-->
+        <!--<formElements>-->
+        <!--<multiselect>-->
+        <!--<settings>-->
+        <!--<options class="Beecom\MatrixRate\Ui\Component\Listing\Column\Cms\Options"/>-->
+        <!--</settings>-->
+        <!--</multiselect>-->
+        <!--</formElements>-->
+        <!--</field>-->
+
+        <field name="condition_name" sortOrder="20" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Condition name</label>
+                <dataScope>condition_name</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Beecom\MatrixRate\Model\Config\Source\Matrixrate"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="dest_country_id" sortOrder="20" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Destination coutry ISO/2 or ISO/3 code</label>
+                <dataScope>dest_country_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Directory\Model\Config\Source\Country"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="dest_region_id" sortOrder="20" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Destination Region Id</label>
+                <dataScope>dest_region_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <!-- <options class="Magento\Directory\Model\Config\Source\Allregion"/> -->
+                        <options class="Beecom\MatrixRate\Model\Matrixrate\Source\Regionoption"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="dest_city" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Destination City</label>
+                <dataScope>dest_city</dataScope>
+            </settings>
+        </field>
+
+        <field name="dest_zip" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Destination Post Code (Zip)</label>
+                <dataScope>dest_zip</dataScope>
+            </settings>
+        </field>
+
+        <field name="dest_zip_to" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Destination Post Code To (Zip)</label>
+                <dataScope>dest_zip_to</dataScope>
+            </settings>
+        </field>
+
+        <field name="condition_from_value" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Rate condition from value</label>
+                <dataScope>condition_from_value</dataScope>
+            </settings>
+        </field>
+
+        <field name="condition_to_value" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Rate condition to value</label>
+                <dataScope>condition_to_value</dataScope>
+            </settings>
+        </field>
+
+        <field name="price" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Price</label>
+                <dataScope>price</dataScope>
+            </settings>
+        </field>
+
+        <field name="cost" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Cost</label>
+                <dataScope>cost</dataScope>
+            </settings>
+        </field>
+
+        <field name="shipping_method" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">matrixrate</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Shipping Method</label>
+                <dataScope>shipping_method</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>
