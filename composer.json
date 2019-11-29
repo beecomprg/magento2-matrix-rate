@@ -5,6 +5,10 @@
         "OSL-3.0",
         "AFL-3.0"
     ],
+    "type": "magento2-module",
+    "support": {
+        "documentation": "https://beecomers.atlassian.net/wiki/spaces/BEEW/pages/626589699/Beecom+Matrix+Rate"
+    },
     "authors": [
         {
             "name": "Beecom",
@@ -12,9 +16,9 @@
             "homepage": "http://www.beecom.io"
         }
     ],
-    "type": "magento2-module",
-    "support": {
-        "documentation": "https://beecomers.atlassian.net/wiki/spaces/BEEW/pages/626589699/Beecom+Matrix+Rate"
+    "require": {
+        "beecomprg/module-core": "*",
+        "beecomprg/magento2-owlcarousel": "^1.0"
     },
     "autoload": {
         "files": [
