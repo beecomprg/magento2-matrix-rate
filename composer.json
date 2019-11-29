@@ -25,7 +25,7 @@
             "src/registration.php"
         ],
         "psr-4": {
-            "Beecom\\MatrixRate\\": "src/"
+            "Beecom\\MatrixRate\\": ""
         }
     }
 }
