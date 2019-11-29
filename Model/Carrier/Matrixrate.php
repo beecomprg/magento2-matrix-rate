@@ -489,7 +489,7 @@ class Matrixrate extends AbstractCarrier implements CarrierInterfaceAlias
         }
       //  $request->getOrderShipment()->setPackages($packages)->save();
 
-        $response = new DataObjectAlias(['info' => $data]);
+        $response = new DataObjectAlias(['info' => $data, 'packages' => $packages]);
 
         return $response;
     }

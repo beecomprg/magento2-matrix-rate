@@ -1,4 +1,25 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Beecom
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Beecom.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.beecom.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Beecom
+ * @package     Beecom_Faq
+ * @copyright   Copyright (c) 2012 Beecom (http://www.beecom.com/)
+ * @license     http://www.beecom.com/license-agreement.html
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
     <acl>
         <resources>
