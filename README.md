@@ -1,5 +1,5 @@
 
-# Magento 2 Matrixrate Module
+# Magento 2 Matrixrate
 
 > Rule based shipping rate configuration for your Magento 2 store
 
