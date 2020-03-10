@@ -62,6 +62,15 @@ class Matrixrate extends AbstractDb
 
         $websites = [0, (int)$request->getWebsiteId()];
 
+        $products = $request->getAllItems();
+        $skus = [];
+
+        foreach ($products as $product){
+            if($product['type'] == 'simple'){ //start with the items we want
+                $skus[] = $product['sku'];
+            }
+        }
+
         for ($j=0; $j<8; $j++) {
             $select = $adapter->select()->from(
                 $this->getMainTable()
@@ -69,6 +78,8 @@ class Matrixrate extends AbstractDb
                 'website_id IN (?)', $websites
             )->where(
                 'is_active = (?)', '1'
+            )->where(
+                'sku IN (?) OR sku = "*"', $skus //basic SKU logic
             )->order(
                 ['dest_country_id DESC', 'dest_region_id DESC', 'dest_zip DESC', 'condition_from_value DESC']
             );
@@ -131,7 +142,7 @@ class Matrixrate extends AbstractDb
                     ];
                     break;
                 case 7: // nothing
-                    $zoneWhere =  "dest_country_id = '*' AND dest_region_id = '0' AND dest_city ='*' AND dest_zip ='*'";
+                    $zoneWhere =  "dest_country_id = '*' AND dest_region_id = '0' AND dest_city ='*' AND dest_zip ='*' AND sku is NULL";
                     break;
             }
 

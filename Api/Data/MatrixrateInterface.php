@@ -24,6 +24,7 @@ interface MatrixrateInterface
     const PRICE              = 'price';
     const COST              = 'cost';
     const SHIPPING_METHOD              = 'shipping_method';
+    const SKU              = 'sku';
     /**#@-*/
 
     /**
@@ -111,11 +112,18 @@ interface MatrixrateInterface
     public function getCost();
 
     /**
-     * Get ID
+     * Get Shipping Method
      *
      * @return string|null
      */
     public function getShippingMethod();
+
+    /**
+     * Get Sku
+     *
+     * @return string|null
+     */
+    public function getSku();
 
     /**
      * @param $id
@@ -195,6 +203,12 @@ interface MatrixrateInterface
      * @return mixed
      */
     public function setShippingMethod($shippingMethod);
+
+    /**
+     * @param $sku
+     * @return mixed
+     */
+    public function setSku($sku);
 
 
 }

@@ -151,6 +151,10 @@ class Matrixrate extends \Magento\Framework\Model\AbstractModel implements Matri
         return $this->getData(self::SHIPPING_METHOD);
     }
 
+    public function getSku(){
+        return $this->getData(self::SKU);
+    }
+
     /**
      * @param $id
      * @return mixed
@@ -253,5 +257,9 @@ class Matrixrate extends \Magento\Framework\Model\AbstractModel implements Matri
      */
     public function setShippingMethod($shippingMethod){
         return $this->setData(self::SHIPPING_METHOD, $shippingMethod);
+    }
+
+    public function setSku($sku){
+        return $this->setData(self::SKU, $sku);
     }
 }

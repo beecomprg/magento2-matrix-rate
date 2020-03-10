@@ -5,7 +5,7 @@
         "OSL-3.0",
         "AFL-3.0"
     ],
-    "version": "1.0.2",
+    "version": "1.0.3",
     "type": "magento2-module",
     "support": {
         "documentation": "https://beecomers.atlassian.net/wiki/spaces/BEEW/pages/626589699/Beecom+Matrix+Rate"

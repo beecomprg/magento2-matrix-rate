@@ -16,29 +16,23 @@ use Magento\Framework\Reflection\DataObjectProcessor;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
- * Class BlockRepository
+ * Class MatrixrateRepository
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class MatrixrateRepository implements MatrixrateRepositoryInterface
 {
-    /**
-     * @var ResourceBlock
-     */
     protected $resource;
 
     /**
-     * @var BlockFactory
+     * @var MatrixrateFactory
      */
     protected $matrixrateFactory;
 
     /**
-     * @var BlockCollectionFactory
+     * @var MatrixrateCollectionFactory
      */
     protected $matrixrateCollectionFactory;
 
-    /**
-     * @var Data\BlockSearchResultsInterfaceFactory
-     */
     protected $searchResultsFactory;
 
     /**
@@ -51,31 +45,23 @@ class MatrixrateRepository implements MatrixrateRepositoryInterface
      */
     protected $dataObjectProcessor;
 
-    /**
-     * @var \Magento\Cms\Api\Data\BlockInterfaceFactory
-     */
     protected $dataBlockFactory;
 
-    /**
-     * @var \Magento\Store\Model\StoreManagerInterface
-     */
     private $storeManager;
 
-    /**
-     * @var CollectionProcessorInterface
-     */
     private $collectionProcessor;
 
     /**
+     * MatrixrateRepository constructor.
      * @param ResourceBlock $resource
-     * @param BlockFactory $matrixrateFactory
+     * @param MatrixrateFactory $matrixrateFactory
      * @param Data\MatrixrateInterfaceFactory $dataBlockFactory
      * @param BlockCollectionFactory $matrixrateCollectionFactory
      * @param Data\MatrixrateSearchResultsInterfaceFactory $searchResultsFactory
      * @param DataObjectHelper $dataObjectHelper
      * @param DataObjectProcessor $dataObjectProcessor
      * @param StoreManagerInterface $storeManager
-     * @param CollectionProcessorInterface $collectionProcessor
+     * @param CollectionProcessorInterface|null $collectionProcessor
      */
     public function __construct(
         ResourceBlock $resource,
@@ -99,13 +85,6 @@ class MatrixrateRepository implements MatrixrateRepositoryInterface
         $this->collectionProcessor = $collectionProcessor ?: $this->getCollectionProcessor();
     }
 
-    /**
-     * Save Block data
-     *
-     * @param \Magento\Cms\Api\Data\BlockInterface $matrixrate
-     * @return Block
-     * @throws CouldNotSaveException
-     */
     public function save(Data\MatrixrateInterface $matrixrate)
     {
         if (empty($matrixrate->getStoreId())) {
@@ -120,13 +99,6 @@ class MatrixrateRepository implements MatrixrateRepositoryInterface
         return $matrixrate;
     }
 
-    /**
-     * Load Block data by given Block Identity
-     *
-     * @param string $matrixrateId
-     * @return Block
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     */
     public function getById($matrixrateId)
     {
         $matrixrate = $this->matrixrateFactory->create();
@@ -137,22 +109,12 @@ class MatrixrateRepository implements MatrixrateRepositoryInterface
         return $matrixrate;
     }
 
-    /**
-     * Load Block data collection by given search criteria
-     *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $criteria
-     * @return \Magento\Cms\Api\Data\BlockSearchResultsInterface
-     */
     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $criteria)
     {
-        /** @var \Magento\Cms\Model\ResourceModel\Block\Collection $collection */
         $collection = $this->matrixrateCollectionFactory->create();
 
         $this->collectionProcessor->process($criteria, $collection);
 
-        /** @var Data\BlockSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
         $searchResults->setItems($collection->getItems());
@@ -160,13 +122,6 @@ class MatrixrateRepository implements MatrixrateRepositoryInterface
         return $searchResults;
     }
 
-    /**
-     * Delete Block
-     *
-     * @param \Magento\Cms\Api\Data\BlockInterface $matrixrate
-     * @return bool
-     * @throws CouldNotDeleteException
-     */
     public function delete(Data\MatrixrateInterface $matrixrate)
     {
         try {
@@ -177,25 +132,11 @@ class MatrixrateRepository implements MatrixrateRepositoryInterface
         return true;
     }
 
-    /**
-     * Delete Block by given Block Identity
-     *
-     * @param string $matrixrateId
-     * @return bool
-     * @throws CouldNotDeleteException
-     * @throws NoSuchEntityException
-     */
     public function deleteById($matrixrateId)
     {
         return $this->delete($this->getById($matrixrateId));
     }
 
-    /**
-     * Retrieve collection processor
-     *
-     * @deprecated 101.1.0
-     * @return CollectionProcessorInterface
-     */
     private function getCollectionProcessor()
     {
         if (!$this->collectionProcessor) {

@@ -2,7 +2,7 @@
 
     <preference for="Beecom\MatrixRate\Api\Data\MatrixrateInterface" type="Beecom\MatrixRate\Model\Matrixrate" />
     <preference for="Beecom\MatrixRate\Api\MatrixrateRepositoryInterface" type="Beecom\MatrixRate\Model\MatrixrateRepository" />
-    <preference for="Beecom\MatrixRate\Api\Data\MatrixrateSearchResultsInterface" type="Beecom\MatrixRate\Model\MatrixrateRepository" />
+    <preference for="Beecom\MatrixRate\Api\Data\MatrixrateSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
 
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
