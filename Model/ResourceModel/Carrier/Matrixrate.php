@@ -78,8 +78,6 @@ class Matrixrate extends AbstractDb
                 'website_id IN (?)', $websites
             )->where(
                 'is_active = (?)', '1'
-            )->where(
-                'sku IN (?) OR sku = "*"', $skus //basic SKU logic
             )->order(
                 ['dest_country_id DESC', 'dest_region_id DESC', 'dest_zip DESC', 'condition_from_value DESC']
             );
@@ -142,7 +140,7 @@ class Matrixrate extends AbstractDb
                     ];
                     break;
                 case 7: // nothing
-                    $zoneWhere =  "dest_country_id = '*' AND dest_region_id = '0' AND dest_city ='*' AND dest_zip ='*' AND sku is NULL";
+                    $zoneWhere =  "dest_country_id = '*' AND dest_region_id = '0' AND dest_city ='*' AND dest_zip ='*' AND sku is '*'";
                     break;
             }
 
@@ -154,6 +152,9 @@ class Matrixrate extends AbstractDb
             $select->where('condition_name = :condition_name');
             $select->where('condition_from_value <= :condition_value');
             $select->where('condition_to_value >= :condition_value');
+
+            $bind[':skus'] = $condition;
+            $select->where('sku IN (:skus) OR sku = "*"');
 
             $results = $adapter->fetchAll($select, $bind);
 
