@@ -188,7 +188,7 @@
             </argument>
             <settings>
                 <validation>
-                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
                 <label translate="true">Destination City</label>
@@ -204,7 +204,7 @@
             </argument>
             <settings>
                 <validation>
-                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
                 <label translate="true">Destination Post Code (Zip)</label>
@@ -220,7 +220,7 @@
             </argument>
             <settings>
                 <validation>
-                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
                 <label translate="true">Destination Post Code To (Zip)</label>
@@ -300,7 +300,7 @@
             </argument>
             <settings>
                 <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
                 </validation>
                 <dataType>text</dataType>
                 <label translate="true">SKU</label>

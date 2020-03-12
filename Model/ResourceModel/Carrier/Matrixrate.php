@@ -16,19 +16,23 @@ class Matrixrate extends AbstractDb
      */
     protected $metadataPool;
 
+    protected $_logger;
+
     public function __construct(
         Context $context,
         StoreManagerInterface $storeManager,
         DateTime $dateTime,
         EntityManager $entityManager,
         MetadataPool $metadataPool,
-        $connectionName = null
+        $connectionName = null,
+        \Psr\Log\LoggerInterface $logger
     ) {
         parent::__construct($context, $connectionName);
         $this->_storeManager = $storeManager;
         $this->dateTime = $dateTime;
         $this->entityManager = $entityManager;
         $this->metadataPool = $metadataPool;
+        $this->_logger = $logger;
     }
 
     /**
@@ -66,8 +70,8 @@ class Matrixrate extends AbstractDb
         $skus = [];
 
         foreach ($products as $product){
-            if($product['type'] == 'simple'){ //start with the items we want
-                $skus[] = $product['sku'];
+            if($product->getProductType() == 'simple'){ //start with the items we want
+                $skus[] = $product->getSku();
             }
         }
 
@@ -140,7 +144,7 @@ class Matrixrate extends AbstractDb
                     ];
                     break;
                 case 7: // nothing
-                    $zoneWhere =  "dest_country_id = '*' AND dest_region_id = '0' AND dest_city ='*' AND dest_zip ='*' AND sku is '*'";
+                    $zoneWhere =  "dest_country_id = '*' AND dest_region_id = '0' AND dest_city ='*' AND dest_zip ='*'";
                     break;
             }
 
@@ -149,12 +153,12 @@ class Matrixrate extends AbstractDb
             $bind[':condition_name'] = $request->getConditionMRName();
             $bind[':condition_value'] = $request->getData($request->getConditionMRName());
 
+            $placeholders = array_fill(0, count($skus), '?');
+
             $select->where('condition_name = :condition_name');
             $select->where('condition_from_value <= :condition_value');
             $select->where('condition_to_value >= :condition_value');
-
-            $bind[':skus'] = $condition;
-            $select->where('sku IN (:skus) OR sku = "*"');
+            $select->where(sprintf("sku IN(%s) OR sku = '*'", join(', ', $placeholders)),$skus);
 
             $results = $adapter->fetchAll($select, $bind);
 
@@ -165,6 +169,8 @@ class Matrixrate extends AbstractDb
                 break;
             }
         }
+
+        //pick the most expensive item for sku
 
         return $shippingData;
     }
