@@ -94,5 +94,32 @@ class UpgradeData implements UpgradeDataInterface
             );
             $installer->endSetup();
         }
+
+        if ( version_compare($context->getVersion(), '1.0.4', '<' )) {
+            $installer = $setup->startSetup();
+            $installer->getConnection()->modifyColumn(
+                $installer->getTable('beecom_matrixrate'),
+                'dest_region_id',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length' => 30,
+                    'nullable' => false
+                ]
+            );
+
+            $installer->getConnection()->dropIndex(
+                'beecom_matrixrate',
+                $installer->getConnection()->getIndexName(
+                    'beecom_matrixrate',
+                    ['website_id', 'dest_country_id', 'dest_region_id', 'dest_city', 'dest_zip', 'condition_name',
+                        'condition_from_value','condition_to_value','shipping_method'],
+                    \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE
+                )
+            );
+
+            //FIXME add unique index dropped above
+
+            $installer->endSetup();
+        }
     }
 }

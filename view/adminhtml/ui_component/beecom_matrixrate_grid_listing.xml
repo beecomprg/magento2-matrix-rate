@@ -38,6 +38,43 @@
             </argument>
         </argument>
     </dataSource>
+    <container name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="template" xsi:type="string">ui/grid/toolbar</item>
+                <item name="stickyTmpl" xsi:type="string">ui/grid/sticky/toolbar</item>
+            </item>
+        </argument>
+        <component name="columns_controls">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsData" xsi:type="array">
+                        <item name="provider" xsi:type="string">beecom_matrixrate_grid_listing.beecom_matrixrate_grid_listing.beecom_region_region_columns</item>
+                    </item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
+                    <item name="displayArea" xsi:type="string">dataGridActions</item>
+                </item>
+            </argument>
+        </component>
+<!--        <exportButton name="export_button">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="selectProvider" xsi:type="string">beecom_matrixrate_grid_listing.beecom_matrixrate_grid_listing.beecom_region_region_columns.ids</item>-->
+<!--                </item>-->
+<!--            </argument>-->
+<!--        </exportButton>-->
+        <paging name="listing_paging">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">beecom_matrixrate_grid_listing.beecom_matrixrate_grid_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.paging</item>
+                    </item>
+                    <item name="selectProvider" xsi:type="string">beecom_matrixrate_grid_listing.beecom_matrixrate_grid_listing.beecom_region_region_columns.ids</item>
+                </item>
+            </argument>
+        </paging>
+    </container>
     <columns name="beecom_matrixrate_page_columns">
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">

@@ -93,7 +93,7 @@ class Matrixrate extends AbstractDb
                     $zoneWhere =  "dest_country_id = :country_id AND dest_region_id = :region_id AND STRCMP(LOWER(dest_city),LOWER(:city))= 0 " .$zipSearchString;
                     $bind = [
                         ':country_id' => $request->getDestCountryId(),
-                        ':region_id' => (int)$request->getDestRegionId(),
+                        ':region_id' => (int)$request->getDestRegionCode(),
                         ':city' => $request->getDestCity(),
                         ':postcode' => $request->getDestPostcode(),
                     ];
