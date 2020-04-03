@@ -88,12 +88,21 @@ class Matrixrate extends AbstractDb
 
             $zoneWhere='';
             $bind=[];
+            $this->_logger->debug('request',
+                [
+                $request->getDestCountryId(),
+                    $request->getDestRegionCode(),
+                    $request->getDestCity(),
+                    $request->getDestPostcode()
+                ]
+            );
+
             switch ($j) {
                 case 0: // country, region, city, postcode
                     $zoneWhere =  "dest_country_id = :country_id AND dest_region_id = :region_id AND STRCMP(LOWER(dest_city),LOWER(:city))= 0 " .$zipSearchString;
                     $bind = [
                         ':country_id' => $request->getDestCountryId(),
-                        ':region_id' => (int)$request->getDestRegionCode(),
+                        ':region_id' => $request->getDestRegionCode(),
                         ':city' => $request->getDestCity(),
                         ':postcode' => $request->getDestPostcode(),
                     ];
@@ -103,7 +112,7 @@ class Matrixrate extends AbstractDb
                         .$zipSearchString;
                     $bind = [
                         ':country_id' => $request->getDestCountryId(),
-                        ':region_id' => (int)$request->getDestRegionId(),
+                        ':region_id' => $request->getDestRegionCode(),
                         ':postcode' => $request->getDestPostcode(),
                     ];
                     break;
@@ -111,7 +120,7 @@ class Matrixrate extends AbstractDb
                     $zoneWhere = "dest_country_id = :country_id AND dest_region_id = :region_id AND STRCMP(LOWER(dest_city),LOWER(:city))= 0 AND dest_zip ='*'";
                     $bind = [
                         ':country_id' => $request->getDestCountryId(),
-                        ':region_id' => (int)$request->getDestRegionId(),
+                        ':region_id' => $request->getDestRegionCode(),
                         ':city' => $request->getDestCity(),
                     ];
                     break;
@@ -134,7 +143,7 @@ class Matrixrate extends AbstractDb
                     $zoneWhere =  "dest_country_id = :country_id AND dest_region_id = :region_id  AND dest_city ='*' AND dest_zip ='*'";
                     $bind = [
                         ':country_id' => $request->getDestCountryId(),
-                        ':region_id' => (int)$request->getDestRegionId(),
+                        ':region_id' => $request->getDestRegionCode(),
                     ];
                     break;
                 case 6: // country
@@ -160,6 +169,7 @@ class Matrixrate extends AbstractDb
             $select->where('condition_to_value >= :condition_value');
             $select->where(sprintf("sku IN(%s) OR sku = '*'", join(', ', $placeholders)),$skus);
 
+            $this->_logger->debug($select->__toString());
             $results = $adapter->fetchAll($select, $bind);
 
             if (!empty($results)) {
