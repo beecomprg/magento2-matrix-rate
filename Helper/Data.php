@@ -10,12 +10,6 @@ use Magento\Framework\App\Helper\AbstractHelper;
 
 class Data extends AbstractHelper
 {
-    protected $urlbuilder;
-    protected $imagehelper;
-    protected $storeManager;
-    protected $session;
-    protected $registry;
-    protected $productLoader;
 
     /**
      * System configuration helper
