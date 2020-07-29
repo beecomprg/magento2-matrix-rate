@@ -72,6 +72,10 @@ class Save extends \Beecom\MatrixRate\Controller\Adminhtml\Matrixrate
                 $data['dest_country_id'] = '*';
             }
 
+            if (empty($data['dest_region_id'])) {
+                $data['dest_region_id'] = '0';
+            }
+
             /** @var \Beecom\MatrixRate\Model\Matrixrate $model */
             $model = $this->matrixrateFactory->create();
 
